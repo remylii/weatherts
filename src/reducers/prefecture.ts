@@ -7,10 +7,10 @@ export interface PrefectureState {
 export interface IPrefecture {
   id: string;
   title: string;
-  cities: [];
+  cities: ICity[];
 }
 
-export interface IRegion {
+export interface ICity {
   id: string;
   title: string;
 }
@@ -20,7 +20,11 @@ const initialState: PrefectureState = {
     {
       id: "11",
       title: "埼玉県",
-      cities: []
+      cities: [
+        { id: "110010", title: "さいたま" },
+        { id: "110020", title: "熊谷" },
+        { id: "110030", title: "秩父" }
+      ]
     },
     {
       id: "12",

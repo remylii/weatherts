@@ -1,22 +1,32 @@
 import React from "react";
 import Header from "../parts/Header";
 import Footer from "../parts/Footer";
-import { IPrefecture } from "../../reducers/prefecture";
+import SubTitle from "../basics/SubTitle";
+import { IPrefecture, ICity } from "../../reducers/prefecture";
+import ListLinkPanel from "../parts/ListLinkPanel";
+import ListPanel from "../parts/ListPanel";
 
-interface OwnProps {
-  listData: IPrefecture[];
-}
+type Props = {
+  id?: string;
+  title: string;
+  listData: IPrefecture[] | ICity[];
+  linkPath?: string;
+};
 
-type Props = OwnProps;
-
-const ListStandard: React.FC<Props> = (props: OwnProps) => {
+const ListStandard: React.FC<Props> = props => {
   console.log(props);
+  const Panel = props.linkPath ? (
+    <ListLinkPanel listData={props.listData} linkPath={props.linkPath} />
+  ) : (
+    <ListPanel listData={props.listData} />
+  );
   return (
     <div>
       <Header />
-      {props.listData.map(pref => (
-        <p key={pref.id}>{pref.title}</p>
-      ))}
+      <main>
+        <SubTitle title={props.title} />
+        {Panel}
+      </main>
       <Footer />
     </div>
   );

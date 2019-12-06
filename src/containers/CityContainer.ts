@@ -1,12 +1,17 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
+import { RouteComponentProps } from "react-router-dom";
+import { AppState } from "../store";
 
-import City from "../components/pages/City";
+import CityPage from "../components/pages/CityPage";
 
-export type CityProps = {};
+export type CityProps = {
+  id: string;
+} & RouteComponentProps<{ id: string }>;
 
-function mapStateToProps(appState: any) {
-  return {};
+function mapStateToProps(appState: AppState, props: CityProps) {
+  const { id } = props.match.params;
+  return { id };
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {
@@ -15,4 +20,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
 
 export type DispatchProps = ReturnType<typeof mapDispatchToProps>;
 
-export default connect(mapStateToProps)(City);
+export default connect(mapStateToProps)(CityPage);
